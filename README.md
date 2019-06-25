@@ -1,17 +1,17 @@
 # mosquitto-auth-plug
 
-I am try repository from JP Mens (https://github.com/jpmens/mosquitto-auth-plug)
-but he "...archiving this repository and closing all currently open issues and pull requests without prejudice...."
+I was try repository from JP Mens (https://github.com/jpmens/mosquitto-auth-plug)
+but he "...archiving this repository and closing all currently open issues and pull requests without prejudice...." (((
 
-And mosquitto-auth-plug (https://github.com/jpmens/mosquitto-auth-plug) dont compile (build) with lattest Mosquitto broker (1.6.3).
+and his mosquitto-auth-plug (https://github.com/jpmens/mosquitto-auth-plug) dont compile (build) with lattest Mosquitto broker (1.6.3).
 
-I was make some changes and compile mosquitto-auth-plug with Mosquitto (try version 1.6.3)
+I create fork and I was make some changes for compile mosquitto-auth-plug with lattest Mosquitto (try version 1.6.3)
 
 I was tested with MySQL only. 
 
 This is fork of https://github.com/jpmens/mosquitto-auth-plug
 
-The original (https://github.com/jpmens/mosquitto-auth-plug)
+The original source https://github.com/jpmens/mosquitto-auth-plug
 
 # mosquitto-auth-plug
 
