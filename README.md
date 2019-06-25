@@ -96,12 +96,35 @@ the plugin, and
 * a recent version of OpenSSL (if the version with your OS, e.g., OS X, is too old, you may need to use one
 supplied by home brew or build your own).
 
-Copy `config.mk.in` to `config.mk` and modify `config.mk` to suit your building environment. In particular, you have
-to configure which back-ends you want to provide as well as the path to the
+Step by step:
+```
+1. git clone https://github.com/eclipse/mosquitto
+2. Copy `config.mk.in` to `config.mk` and modify `config.mk` to suit your building environment. In particular, you have
+to configure which back-ends `BACKEND_xxx` you want (yes or no) to provide as well as the path `MOSQUITTO_SRC` to the
 [Mosquitto] source and its library, and possibly the path to OpenSSL (`OPENSSLDIR`).
-
-After a `make` you should have a shared object called `auth-plug.so`
+3. Do `make`, after a `make` you should have a shared object called `auth-plug.so`
 which you will reference in your `mosquitto.conf`.
+4. Open and edit file `/etc/mosquitto/mosquitto.conf` and add lines:
+
+I used MySQL only and this sample for MySQL only:
+
+auth_plugin /home/sergey/mosquitto-auth-plug/auth-plug.so
+#auth_opt_backends cdb,sqlite,mysql,redis,postgres,http,jwt,mongo
+auth_opt_backends mysql
+auth_opt_host localhost
+auth_opt_port 3306
+auth_opt_dbname test
+auth_opt_user mqtt
+auth_opt_pass mqtt
+auth_opt_userquery SELECT pw FROM users WHERE username = '%s'
+auth_opt_superquery SELECT COUNT(*) FROM users WHERE username = '%s' AND super = 1
+auth_opt_aclquery SELECT topic FROM acls WHERE (username = '%s') AND (rw >= %d)
+auth_opt_anonusername AnonymouS
+
+# Usernames with this fnmatch(3) (a.k.a glob(3))  pattern are exempt from the
+# module's ACL checking
+auth_opt_superusers S*
+```
 
 ## Configuration
 
