@@ -99,11 +99,13 @@ supplied by home brew or build your own).
 Step by step:
 ```
 1. git clone https://github.com/eclipse/mosquitto
-2. Copy `config.mk.in` to `config.mk` and modify `config.mk` to suit your building environment. In particular, you have
-to configure which back-ends `BACKEND_xxx` you want (yes or no) to provide as well as the path `MOSQUITTO_SRC` to the
-[Mosquitto] source and its library, and possibly the path to OpenSSL (`OPENSSLDIR`).
+2. Copy `config.mk.in` to `config.mk` and modify `config.mk` to suit your building environment.
+   In particular, you have
+   to configure which back-ends `BACKEND_xxx` you want (yes or no) to provide as well as the 
+   path `MOSQUITTO_SRC` to the
+   [Mosquitto] source and its library, and possibly the path to OpenSSL (`OPENSSLDIR`).
 3. Do `make`, after a `make` you should have a shared object called `auth-plug.so`
-which you will reference in your `mosquitto.conf`.
+   which you will reference in your `mosquitto.conf`.
 4. Open and edit file `/etc/mosquitto/mosquitto.conf` and add lines:
 
 I used MySQL only and this sample for MySQL only:
