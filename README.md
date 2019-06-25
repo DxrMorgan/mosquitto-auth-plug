@@ -214,8 +214,26 @@ WARNING: The new version of mosquitto add new flag MOSQ_ACL_SUBSCRIBE = 4.
 #define MOSQ_ACL_SUBSCRIBE 0x04
 ```
 
+I have not had time to figure out what the difference is 2 and 4, here is the text from the official document mosquito:
+
+```
+ *  MOSQ_ACL_SUBSCRIBE when a client is asking to subscribe to a topic string.
+ *                     This differs from MOSQ_ACL_READ in that it allows you to
+ *                     deny access to topic strings rather than by pattern. For
+ *                     example, you may use MOSQ_ACL_SUBSCRIBE to deny
+ *                     subscriptions to '#', but allow all topics in
+ *                     MOSQ_ACL_READ. This allows clients to subscribe to any
+ *                     topic they want, but not discover what topics are in use
+ *                     on the server.
+ *  MOSQ_ACL_READ      when a message is about to be sent to a client (i.e. whether
+ *                     it can read that topic or not).
+ *  MOSQ_ACL_WRITE     when a message has been received from a client (i.e. whether
+ *                     it can write to that topic or not).
+```
+
+
 In the following example, the table has an `INT(1)` column `rw` containing `1` for
-readonly topics, and `2` for read-write topics:
+readonly topics, and `2` for read-write, and `4` for subscribe topics:
 
 ```sql
 SELECT topic FROM acls WHERE (username = '%s') AND (rw >= %d)
